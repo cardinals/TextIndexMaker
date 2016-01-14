@@ -1,0 +1,9 @@
+D:\MyTestProject\MyLuceneTextIndexMaker\bin\Debug\PanGu\PanGu.xml
+D:\MyTestProject\MyLuceneTextIndexMaker\bin\Debug\MyLuceneTextIndexMaker.exe.config
+D:\MyTestProject\MyLuceneTextIndexMaker\bin\Debug\MyLuceneTextIndexMaker.exe
+D:\MyTestProject\MyLuceneTextIndexMaker\bin\Debug\MyLuceneTextIndexMaker.pdb
+D:\MyTestProject\MyLuceneTextIndexMaker\bin\Debug\log4net.dll
+D:\MyTestProject\MyLuceneTextIndexMaker\bin\Debug\log4net.xml
+D:\MyTestProject\MyLuceneTextIndexMaker\obj\Debug\MyLuceneTextIndexMaker.exe
+D:\MyTestProject\MyLuceneTextIndexMaker\obj\Debug\MyLuceneTextIndexMaker.pdb
+D:\MyTestProject\MyLuceneTextIndexMaker\bin\Debug\LogConfig\Log4Net.config

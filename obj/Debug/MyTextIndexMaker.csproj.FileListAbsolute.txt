@@ -1,0 +1,17 @@
+D:\MyTestProject\索引生成器\MyLuceneTextIndexMaker\bin\Debug\PanGu\Dictionaries\ChsDoubleName1.txt
+D:\MyTestProject\索引生成器\MyLuceneTextIndexMaker\bin\Debug\PanGu\Dictionaries\ChsDoubleName2.txt
+D:\MyTestProject\索引生成器\MyLuceneTextIndexMaker\bin\Debug\PanGu\Dictionaries\ChsSingleName.txt
+D:\MyTestProject\索引生成器\MyLuceneTextIndexMaker\bin\Debug\PanGu\Dictionaries\Stopword.txt
+D:\MyTestProject\索引生成器\MyLuceneTextIndexMaker\bin\Debug\PanGu\Dictionaries\Synonym.txt
+D:\MyTestProject\索引生成器\MyLuceneTextIndexMaker\bin\Debug\PanGu\Dictionaries\Wildcard.txt
+D:\MyTestProject\索引生成器\MyLuceneTextIndexMaker\bin\Debug\PanGu\PanGu.xml
+D:\MyTestProject\索引生成器\MyLuceneTextIndexMaker\bin\Debug\PanGu\Dictionaries\Dict.dct
+D:\MyTestProject\索引生成器\MyLuceneTextIndexMaker\bin\Debug\51XuanXiao.TextIndexMaker.exe.config
+D:\MyTestProject\索引生成器\MyLuceneTextIndexMaker\bin\Debug\51XuanXiao.TextIndexMaker.exe
+D:\MyTestProject\索引生成器\MyLuceneTextIndexMaker\bin\Debug\51XuanXiao.TextIndexMaker.pdb
+D:\MyTestProject\索引生成器\MyLuceneTextIndexMaker\obj\Debug\MyTextIndexMaker.csprojResolveAssemblyReference.cache
+D:\MyTestProject\索引生成器\MyLuceneTextIndexMaker\obj\Debug\51XuanXiao.TextIndexMaker.exe
+D:\MyTestProject\索引生成器\MyLuceneTextIndexMaker\obj\Debug\51XuanXiao.TextIndexMaker.pdb
+D:\MyTestProject\MyLuceneTextIndexMaker\bin\Debug\51XuanXiao.TextIndexMaker.exe.config
+D:\MyTestProject\MyLuceneTextIndexMaker\obj\Debug\51XuanXiao.TextIndexMaker.exe
+D:\MyTestProject\MyLuceneTextIndexMaker\obj\Debug\51XuanXiao.TextIndexMaker.pdb
