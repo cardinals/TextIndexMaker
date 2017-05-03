@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>PanGu</id>
+    <version>2.3.1.0</version>
+    <title>盘古分词</title>
+    <authors>cds803</authors>
+    <owners>cds803</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Pan Gu Segment is a library that can segment Chinese and English words from sentence.
+盘古分词是一个中英文分词组件。作者eaglet 曾经开发过KTDictSeg 中文分词组件，拥有大量用户。
+作者基于之前分词组件的开发经验，结合最新的开发技术重新编写了盘古分词组件。</description>
+    <summary />
+  </metadata>
+</package>
