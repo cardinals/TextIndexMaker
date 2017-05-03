@@ -1,17 +1,26 @@
-﻿using Lucene.Net.Analysis.PanGu;
+﻿using Lucene.Net.Analysis;
+using Lucene.Net.Analysis.PanGu;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.Search;
 using Lucene.Net.Store;
 using MyLuceneTextIndexMaker;
+using MyLuceneTextIndexMaker.Entity;
 using MyTextIndexMaker.Entity;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 
 namespace MyTextIndexMaker.BLL
 {
     public class LuceneManager
     {
+
+        private static string _luceneTextIndexFileDirectory;
+
+        private static string _textIndexFileDirectory;
+
         private static List<string> _invaildWords;
 
         /// <summary>
@@ -50,6 +59,46 @@ namespace MyTextIndexMaker.BLL
             }
             return false;
         }
+
+        /// <summary>
+        /// 获取索引存放的分目录
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        public static string GetLuceneTextIndexDirectoryPath(LuceneTextIndexType type, string parameter)
+        {
+            string d = string.Concat(type.ToString(), "\\");
+            if (!string.IsNullOrEmpty(parameter))
+            {
+                d = string.Concat(d, parameter, "\\");
+            }
+            string p = Path.Combine(LuceneManager.LUCENE_TEXT_INDEX_FILE_DIRECTORY, d);
+            return p;
+        }
+        /// <summary>
+        /// LUCENE索引保存的根目录路径
+        /// </summary>
+        public static string LUCENE_TEXT_INDEX_FILE_DIRECTORY
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_luceneTextIndexFileDirectory))
+                {
+                    string confPath = ConfigurationManager.AppSettings["LUCENE_TEXT_INDEX_FILE_DIRECTORY"];
+                    if (Path.IsPathRooted(confPath))
+                    {
+                        _luceneTextIndexFileDirectory = confPath;
+                    }
+                    else
+                    {
+                        _luceneTextIndexFileDirectory =String.Concat(AppDomain.CurrentDomain.BaseDirectory, confPath);
+                    }
+                }
+                return _luceneTextIndexFileDirectory;
+            }
+        }
+
 
         /// <summary>
         /// 生成LUCENE索引数据
@@ -111,7 +160,7 @@ namespace MyTextIndexMaker.BLL
         /// <param name="pagerInfo"></param>
         /// <param name="callback"></param>
         /// <returns></returns>
-        public static List<Document> SearchLuceneData(string directoryPath, Query query, Sort sort, PagerInfo pagerInfo)
+        public static List<Document> SearchLuceneData(string directoryPath, Query query, Sort sort, PagerInfo pagerInfo, Action<Document> callback)
         {
             List<Document> list = new List<Document>();
 
@@ -157,6 +206,10 @@ namespace MyTextIndexMaker.BLL
                     Document doc = indexSearcher.Doc(hit.doc);
 
                     list.Add(doc);
+                    if (callback != null)
+                    {
+                        callback(doc);
+                    }
                 }
             }
 

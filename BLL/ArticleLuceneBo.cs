@@ -2,6 +2,7 @@
 using Lucene.Net.Index;
 using Lucene.Net.Search;
 using MyLuceneTextIndexMaker;
+using MyLuceneTextIndexMaker.IBLL;
 using MyTextIndexMaker.DAL;
 using MyTextIndexMaker.Entity;
 using System;
@@ -10,16 +11,25 @@ using System.Configuration;
 
 namespace MyTextIndexMaker.BLL
 {
-    public class ArticleLuceneBo
+    public class ArticleLuceneBo : BaseLuceneBo, ILucene
     {
         private ArticleDao dao = new ArticleDao();
         private string directoryPath = ConfigurationManager.AppSettings["UNIVERTITY_INDEX_FILE_DIRECTORY"].ToString();
+        /// <summary>
+        ///  回调方法
+        /// </summary>
+        /// <param name="indexDoc"></param>
+        public void Callback(Document indexDoc)
+        {
 
+            Console.WriteLine("生成了{0}", indexDoc.Get("CnName"));
+
+        }
         /// <summary>
         /// 生成文章索引
         /// </summary>
         /// <param name="itemCallback"></param>
-        public void MakeArticleLuceneIndex(Action<Document> callback)
+        public void MakeLuceneIndex(Action<Document> callback)
         {
             List<Article> list = dao.GetArticleList();
             List<Document> documentList = new List<Document>();
@@ -60,16 +70,16 @@ namespace MyTextIndexMaker.BLL
                     string lowerCaseKeywordsPart = keywordsPart.ToLower();
 
                     BooleanQuery groupQuery = new BooleanQuery();
-                    groupQuery.Add(new WildcardQuery(new Term("Id", "*" + keywordsPart + "*")), Lucene.Net.Search.BooleanClause.Occur.SHOULD);
-                    groupQuery.Add(new WildcardQuery(new Term("Title", "*" + keywordsPart + "*")), Lucene.Net.Search.BooleanClause.Occur.SHOULD);
-                    groupQuery.Add(new WildcardQuery(new Term("Content", "*" + keywordsPart + "*")), Lucene.Net.Search.BooleanClause.Occur.SHOULD);
-                    query.Add(groupQuery, BooleanClause.Occur.MUST);
+                    groupQuery.Add(new WildcardQuery(new Term("Id", "*" + keywordsPart + "*")),BooleanClause.Occur.SHOULD);
+                    groupQuery.Add(new WildcardQuery(new Term("Title", "*" + keywordsPart + "*")), BooleanClause.Occur.SHOULD);
+                    groupQuery.Add(new WildcardQuery(new Term("Content", "*" + keywordsPart + "*")), BooleanClause.Occur.SHOULD);
+                    query.Add(groupQuery,BooleanClause.Occur.MUST);
                 }
                 Sort sort = null;
                 try
                 {
 
-                    List<Document> documentList = LuceneManager.SearchLuceneData(directoryPath, query, sort, pagerInfo);
+                    List<Document> documentList = LuceneManager.SearchLuceneData(directoryPath, query, sort, pagerInfo,null);
                     if (documentList != null && documentList.Count > 0)
                     {
 

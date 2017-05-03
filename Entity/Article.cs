@@ -10,3 +10,5 @@ namespace MyTextIndexMaker.Entity
         public string Title { get; set; }
     }
 }
+
+

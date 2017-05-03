@@ -1,4 +1,5 @@
 ﻿using Lucene.Net.Documents;
+using MyLuceneTextIndexMaker.IBLL;
 using MyTextIndexMaker.BLL;
 using MyTextIndexMaker.Entity;
 using System;
@@ -12,47 +13,32 @@ namespace MyLuceneTextIndexMaker
         {
             try
             {
-               
-                Console.WriteLine("请选择要进行的操作");
-                Console.WriteLine("输入Y，生成所有文章索引");
-                Console.WriteLine("输入F，生成所有文章索引");
-                Console.WriteLine("> X:关闭程序");
-                string input = Console.ReadLine();
-                ArticleLuceneBo luceneBo = new ArticleLuceneBo();
-                if (string.Compare(input, "y", true) == 0)
-                {
-                    Console.WriteLine("开始执行：生成所有文章索引......");
+                ILucene lucene =  new UniversityLuceneBo();
+                Console.WriteLine("开始生成大学索引：");
+                lucene.MakeLuceneIndex(lucene.Callback);
+                Console.WriteLine("索引全部生成");
+                
+                //string keyword = Console.ReadLine();
+                //var luceneBo = lucene as UniversityLuceneBo;
+                //PagerInfo pagerInfo = new PagerInfo() { PageIndex = 1, PageSize = 10 };
+                //List<SchoolSample> list = luceneBo.SearchList(keyword, pagerInfo);
+                //Console.WriteLine("索引结果如下：");
+                //if (list != null)
+                //{
+                //    list.ForEach(item =>
+                //    {
 
-                    string panguConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PanGu\\PanGu.xml");
-                    PanGu.Segment.Init(panguConfigPath);
+                //        Console.WriteLine(item.Name);
+                //    });
+                //}
+                Console.ReadLine();
 
-                    luceneBo.MakeArticleLuceneIndex(delegate(Document indexDoc)
-                    {
-                        Console.WriteLine("生成了文章《{0}》的索引", indexDoc.Get("Title"));
-                    });
-                    Console.WriteLine("索引全部生成");
-                }
-                else if (string.Compare(input, "F", true) == 0)
-                {
-                    Console.WriteLine("输入要查找的关键字，关键字用逗号分开");
-                    string keyword = Console.ReadLine();
+                lucene = new SpecialtyLuceneBo();
 
-                    PagerInfo pagerInfo = new PagerInfo() { PageIndex = 1, PageSize = 10 };
-                    List<LuceneArticle> list = luceneBo.SearchArticleList(keyword, pagerInfo);
-                    Console.WriteLine("索引结果如下：");
-                    if (list != null)
-                    {
-                        list.ForEach(item =>
-                        {
-
-                            Console.WriteLine(item.Content);
-                        });
-                    }
-                }
-                if (string.Compare(input, "X", true) == 0)
-                {
-                    Environment.Exit(0);
-                }
+                Console.WriteLine("开始生成专业索引：");
+                lucene.MakeLuceneIndex(lucene.Callback);
+                Console.WriteLine("索引全部生成");
+                
             }
             catch (Exception ex)
             {
